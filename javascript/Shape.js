@@ -11,6 +11,10 @@ class Shape{
                 this.block4 = new Block(6, 1, 'cyan');
                 break;
             case('o'):
+                this.block1 = new Block(5, 0, 'yellow');
+                this.block2 = new Block(4, 0, 'yellow');
+                this.block3 = new Block(5, 1, 'yellow');
+                this.block4 = new Block(4, 1, 'yellow');
                 break;
             case('t'):
                 break;
