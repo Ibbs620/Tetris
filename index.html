@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Tetris
+        </title>
+        <style>
+
+            h5 {
+                margin: 0;
+                padding: 2;
+            }
+
+            #frame {
+                border: 3px solid #000000; 
+                float: left;
+            }
+
+            #left_panel{
+                float: left;
+            }
+
+            #hold {
+                border: 3px solid #000000;
+                padding: 8px;
+                width: 80px;
+                height: 80px;
+                float: left;
+            }
+            
+            #grid {
+                float: left;
+                padding: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+        <script src="javascript/Game.js"></script>
+        <script src="javascript/Block.js"></script>
+        <script src="javascript/Shape.js"></script>
+        <script src="javascript/BlockMatrix.js"></script>
+        <h1> Tetris </h1>
+        <div id = "frame">
+            <div id = "left_panel">
+                <h3>Hold</h3>
+                <div id = "hold"></div><br>
+                <h5>Score:</h5>
+                <h5 id="score">0</h5> <br>                
+                <h5>Lines:</h5>
+                <h5 id="lines">0</h5>
+            </div>
+            <div id = "grid"></div>
+        </div>
+    </body>
+</html>
