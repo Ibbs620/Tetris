@@ -67,7 +67,7 @@ class BlockMatrix {
         for(var i = 0; i < 24; i++){
             for(var j = 0; j < 10; j++){
                 if(this.deadBlocks[i][j] == 1){
-                    stroke(this.deadBlocksColor[i][j]);
+                    noStroke();
                     fill(this.deadBlocksColor[i][j]);
                     rect(j * 20, i * 20, 20, 20);
                 }

@@ -9,12 +9,28 @@ class Block{
         if(this.canMoveDown())this.y++;
     }
 
+    moveRight(){
+        if(this.canMoveRight()) this.x++;
+    }
+
+    moveLeft(){
+        if(this.canMoveLeft()) this.x--;
+    }
+
     canMoveDown(){
         return this.y != 23;
     }
 
+    canMoveLeft(){
+        return this.x != 0;
+    }
+
+    canMoveRight(){
+        return this.x != 9;
+    }
+
     draw(){
-        stroke(this.color);
+        noStroke();
         fill(this.color);
         rect(this.x * 20, this.y * 20, 20, 20);
     }
