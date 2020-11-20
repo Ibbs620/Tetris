@@ -1,7 +1,6 @@
 let shape, blockMatrix;
 let shapeIDs = ['i', 'j', 'l', 't', 's', 'z', 't'];
 let currentPiece = 0;
-let maxPiece = 3;
 let currentFrame = 0;
 let fallSpeed = 100;
 let move = 0;
@@ -13,8 +12,8 @@ function setup(){
     background(100);
     frameRate(30);
     blockMatrix = new BlockMatrix();
-    shape = new Shape(shapeIDs[currentPiece], blockMatrix);
     shuffle(shapeIDs, true);
+    shape = new Shape(shapeIDs[currentPiece], blockMatrix);
     currentPiece++;
 }
 
@@ -26,15 +25,14 @@ function draw(){
         blockMatrix.add(shape);
         shape = new Shape(shapeIDs[currentPiece], blockMatrix);
         currentPiece++;
-        if(currentPiece == maxPiece) {
+        if(currentPiece == 7) {
             shuffle(shapeIDs, true);
             currentPiece = 0;
-            maxPiece = int(random(3,6));
         }
     }
     
     if(keyIsDown(DOWN_ARROW)){
-        fallSpeed = 20;
+        fallSpeed = 1;
     } else {
         fallSpeed = 10;
     }
@@ -67,3 +65,4 @@ function keyPressed(){
     if(keyCode === 90 && !shape.dead) shape.rotateShape(1);
     if(keyCode === 32) shape.hardDrop();
 }
+
