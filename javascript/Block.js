@@ -2,6 +2,7 @@ class Block{
     constructor (x, y, color){
         this.x = x;
         this.y = y;
+        this.dead = false;
         this.color = color;
     }
 
