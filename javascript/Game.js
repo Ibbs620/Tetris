@@ -1,9 +1,9 @@
 let shape, blockMatrix;
-let shapeIDs = ['l', 'j', 'z', 's', 'o', 'i', 't'];
+let shapeIDs = ['i', 'j', 'l', 't', 's', 'z', 't'];
 let currentPiece = 0;
-let maxPiece;
+let maxPiece = 3;
 let currentFrame = 0;
-let fallSpeed = 10;
+let fallSpeed = 100;
 let move = 0;
 let moveSpeed = 10;
 
@@ -14,6 +14,7 @@ function setup(){
     frameRate(30);
     blockMatrix = new BlockMatrix();
     shape = new Shape(shapeIDs[currentPiece], blockMatrix);
+    shuffle(shapeIDs, true);
     currentPiece++;
 }
 
