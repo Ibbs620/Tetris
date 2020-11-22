@@ -1,5 +1,5 @@
 let shape, blockMatrix;
-let shapeIDs = ['i', 'j', 'l', 't', 's', 'z', 't'];
+let shapeIDs = ['i', 'j', 'l', 'o', 's', 'z', 't'];
 let currentPiece = 0;
 let currentFrame = 0;
 let fallSpeed = 100;
@@ -9,8 +9,8 @@ let moveSpeed = 10;
 function setup(){
     var canvas = createCanvas(10 * 20, 24 * 20);
     canvas.parent("grid");
-    background(100);
     frameRate(30);
+    background(100);
     blockMatrix = new BlockMatrix();
     shuffle(shapeIDs, true);
     shape = new Shape(shapeIDs[currentPiece], blockMatrix);
@@ -52,7 +52,7 @@ function draw(){
         }
         move = 0;
     }
-
+    blockMatrix.clearLines();
     shape.draw();
     blockMatrix.draw();
     currentFrame++;
