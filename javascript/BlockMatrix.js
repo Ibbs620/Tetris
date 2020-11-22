@@ -63,6 +63,33 @@ class BlockMatrix {
         this.deadBlocksColor[shape.block4.y][shape.block4.x] = shape.color;
     }
 
+    clearLines(){
+        let linesCleared = 0;
+        for(var i = 23; i >= 0; i--){
+            let blocks = 0;
+            for(var j = 0; j < 10; j++){
+                if(this.deadBlocks[i][j] == 1){
+                    blocks++;
+                }
+            }
+            if(blocks == 10){
+                linesCleared++;
+                this.copyDown(i);
+            } else if (blocks == 0){
+                break;
+            }
+        }
+    }
+
+    copyDown(y){
+        for(var i = y; i >= 1; i--){
+            for(var j = 0; j < 10; j++){
+                this.deadBlocks[i][j] = this.deadBlocks[i-1][j];
+                this.deadBlocksColor[i][j] = this.deadBlocksColor[i-1][j];
+            }
+        }
+    }
+
     draw(){
         for(var i = 0; i < 24; i++){
             for(var j = 0; j < 10; j++){
