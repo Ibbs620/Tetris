@@ -4,35 +4,41 @@ class Block{
         this.y = y;
         this.dead = false;
         this.color = color;
+        this.ghost = false;
     }
 
-    moveDown(){
+    moveDown(){ //move block down if area under is unoccupied
         if(this.canMoveDown())this.y++;
     }
 
-    moveRight(){
+    moveRight(){//move block right if area to the right is unoccupied
         if(this.canMoveRight()) this.x++;
     }
 
-    moveLeft(){
+    moveLeft(){//move block left if area to the left is unoccupied
         if(this.canMoveLeft()) this.x--;
     }
 
-    canMoveDown(){
+    canMoveDown(){ //check if space under is unoccupied
         return this.y != 23;
     }
 
-    canMoveLeft(){
+    canMoveLeft(){ //check if space to the left is unoccupied
         return this.x != 0;
     }
 
-    canMoveRight(){
+    canMoveRight(){//check if space to the right is unoccupied
         return this.x != 9;
     }
-
-    draw(){
-        noStroke();
-        fill(this.color);
+ 
+    draw(){ //draw block
+        if(this.ghost){   
+            stroke(this.color);
+            noFill();
+        } else {
+            noStroke();
+            fill(this.color);
+        }
         rect(this.x * 20, this.y * 20, 20, 20);
     }
 }

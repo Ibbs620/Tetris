@@ -52,7 +52,7 @@ class BlockMatrix {
         ['','','','','','','','','','']];
     }
 
-    add(shape){
+    add(shape){ //add dead shape to dead block matrix
         this.deadBlocks[shape.block1.y][shape.block1.x] = 1;
         this.deadBlocksColor[shape.block1.y][shape.block1.x] = shape.color;
         this.deadBlocks[shape.block2.y][shape.block2.x] = 1;
@@ -63,7 +63,15 @@ class BlockMatrix {
         this.deadBlocksColor[shape.block4.y][shape.block4.x] = shape.color;
     }
 
-    clearLines(){
+    resetGhost(){
+        for(var i = 0; i < 24; i++){
+            for(var j = 0; j < 10; j++){
+                if(this.deadBlocks[i][j] == 2) this.deadBlocks[i][j] = 0;
+            }
+        }
+    }
+
+    clearLines(){ //clear completed lines and copy above blocks down
         let linesCleared = 0;
         for(var i = 23; i >= 0; i--){
             let blocks = 0;
@@ -79,9 +87,26 @@ class BlockMatrix {
                 break;
             }
         }
+        return linesCleared;
     }
 
-    copyDown(y){
+    checkTSpin(shape){
+        let corners = 0;
+        let d = [1,-1];
+        for(var i = 0; i < 2; i++){
+            for(var j = 0; j < 2; j++){
+                let x = shape.pivot.x + d[i]
+                let y = shape.pivot.y + d[j];
+                if(x < 0 || x > 10 || y < 0 || y > 10) return false;
+                if(this.deadBlocks[y][x] == 1){
+                    corners++;
+                }
+            }
+        }
+        return corners > 2;
+    }
+
+    copyDown(y){ //copy blocks above y down
         for(var i = y; i >= 1; i--){
             for(var j = 0; j < 10; j++){
                 this.deadBlocks[i][j] = this.deadBlocks[i-1][j];
@@ -90,13 +115,18 @@ class BlockMatrix {
         }
     }
 
-    draw(){
+    draw(){ //draw dead blocks
         for(var i = 0; i < 24; i++){
             for(var j = 0; j < 10; j++){
                 if(this.deadBlocks[i][j] == 1){
                     noStroke();
                     fill(this.deadBlocksColor[i][j]);
                     rect(j * 20, i * 20, 20, 20);
+                } else if (this.deadBlocks[i][j] == 2){
+                    stroke(this.deadBlocksColor[i][j]);
+                    noFill();
+                    rect(j * 20, i * 20, 20, 20);
+
                 }
             }
         }

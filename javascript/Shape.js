@@ -3,7 +3,7 @@ class Shape{
         this.shapeID = shapeID;
         this.blockMatrix = blockMatrix;
         this.dead = false;
-        switch(this.shapeID){
+        switch(this.shapeID){ //initialize blocks and pivot points for rotation
             case('i'):
                 this.color = 'cyan'
                 this.block1 = new Block(3, 1, this.color);
@@ -63,7 +63,7 @@ class Shape{
         }
     }
 
-    moveDown(){
+    moveDown(){ //move shape down if area under it is unoccupied
         if(this.canMoveDown()){
             this.block1.moveDown();
             this.block2.moveDown();
@@ -75,7 +75,7 @@ class Shape{
         }
     }
 
-    moveLeft(){
+    moveLeft(){ //move shape left is area beside it is unoccupied
         if(this.canMoveLeft()){
             this.block1.moveLeft();
             this.block2.moveLeft();
@@ -85,7 +85,7 @@ class Shape{
         }
     }
 
-    moveRight(){
+    moveRight(){ //move shape right if area beside it is unoccupied
         if(this.canMoveRight()){
             this.block1.moveRight();
             this.block2.moveRight();
@@ -95,16 +95,17 @@ class Shape{
         }
     }
 
-    hardDrop(){
-        while(this.canMoveDown()) this.moveDown();
+    hardDrop(){ //Drop the shape straight down
+        let score = 0;
+        while(this.canMoveDown()) {
+            this.moveDown();
+            score += 2;
+        }
         this.dead = true;
+        return score;
     }
-
-    softDrop(){
-
-    }
-
-    canMoveDown(){
+    
+    canMoveDown(){ //check for blocks underneath shape
         return this.block1.canMoveDown() 
         && this.block2.canMoveDown() 
         && this.block3.canMoveDown() 
@@ -115,7 +116,7 @@ class Shape{
         && this.blockMatrix.deadBlocks[this.block4.y + 1][this.block4.x] == 0;
     }
 
-    canMoveRight(){
+    canMoveRight(){ //check for blocks to the right of shape
         return this.block1.canMoveRight() 
         && this.block2.canMoveRight() 
         && this.block3.canMoveRight()  
@@ -126,7 +127,7 @@ class Shape{
         && this.blockMatrix.deadBlocks[this.block4.y][this.block4.x + 1] == 0;
     }
 
-    canMoveLeft(){
+    canMoveLeft(){ //check for blocks to the left of shape
         return this.block1.canMoveLeft() 
         && this.block2.canMoveLeft() 
         && this.block3.canMoveLeft()  
@@ -137,7 +138,7 @@ class Shape{
         && this.blockMatrix.deadBlocks[this.block4.y][this.block4.x - 1] == 0;
     }
 
-    rotateShape(direction){
+    rotateShape(direction){ //rotate shape after checking if can rotate
         let rotatedShape = this.createRotatedShape(direction);
         if(!this.checkShapeOverlap(rotatedShape)) {
             this.block1 = rotatedShape.block1;
@@ -146,13 +147,10 @@ class Shape{
             this.block4 = rotatedShape.block4;
         }
     }
-
-    createRotatedShape(direction){
+ 
+    createRotatedShape(direction){ //clone the shape and rotate it
         let rotatedShape = new Shape(this.shapeID);
-        if(this.shapeID == 'i'){
-            
-        }
-        if (this.shapeID == 'o') return;
+        if (this.shapeID == 'o') return; //rotated form of 'o' tetromino is always the same
         rotatedShape.block1.x = (this.block1.y - this.pivot.y) * direction  + this.pivot.x;
         rotatedShape.block1.y = (this.block1.x - this.pivot.x) * -direction  + this.pivot.y;
         rotatedShape.block2.x = (this.block2.y - this.pivot.y) * direction  + this.pivot.x;
@@ -164,7 +162,7 @@ class Shape{
         return rotatedShape;
     }
 
-    checkShapeOverlap(shape){
+    checkShapeOverlap(shape){ // check if shape position collides with dead blocks
         if(shape.block1.x < 0 || shape.block1.x > 9 || shape.block1.y > 23 ||
            shape.block2.x < 0 || shape.block2.x > 9 || shape.block2.y > 23 ||
            shape.block3.x < 0 || shape.block3.x > 9 || shape.block3.y > 23 ||
@@ -175,7 +173,7 @@ class Shape{
         || this.blockMatrix.deadBlocks[shape.block4.y][shape.block4.x] == 1;
     }
 
-    draw(){
+    draw(){ //draw shape
         this.block1.draw();
         this.block2.draw();
         this.block3.draw();
