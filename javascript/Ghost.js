@@ -1,5 +1,6 @@
-class Ghost{
+class Ghost extends Shape{
     constructor(shape){
+        super(shapeID);
         this.shape = shape;
     }
 
