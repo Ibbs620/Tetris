@@ -85,8 +85,6 @@ class BlockMatrix {
             if(blocks == 10){
                 linesCleared++;
                 this.copyDown(i);
-            } else if (blocks == 0){
-                break;
             }
         }
         return linesCleared;
