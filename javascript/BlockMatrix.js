@@ -78,6 +78,8 @@ class BlockMatrix {
             for(var j = 0; j < 10; j++){
                 if(this.deadBlocks[i][j] == 1){
                     blocks++;
+                } else {
+                    break;
                 }
             }
             if(blocks == 10){
@@ -88,22 +90,6 @@ class BlockMatrix {
             }
         }
         return linesCleared;
-    }
-
-    checkTSpin(shape){
-        let corners = 0;
-        let d = [1,-1];
-        for(var i = 0; i < 2; i++){
-            for(var j = 0; j < 2; j++){
-                let x = shape.pivot.x + d[i]
-                let y = shape.pivot.y + d[j];
-                if(x < 0 || x > 10 || y < 0 || y > 10) return false;
-                if(this.deadBlocks[y][x] == 1){
-                    corners++;
-                }
-            }
-        }
-        return corners > 2;
     }
 
     copyDown(y){ //copy blocks above y down

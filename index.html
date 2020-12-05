@@ -6,9 +6,18 @@
         </title>
         <style>
 
+            img {
+                padding: 0;
+            }
+
+            h1,h3 {
+                font-family: sans-serif;
+            }
+
             h5 {
                 margin: 0;
                 padding: 2;
+                font-family: sans-serif;
             }
 
             #frame {
@@ -23,14 +32,19 @@
             #hold {
                 border: 3px solid #000000;
                 padding: 8px;
-                width: 80px;
-                height: 80px;
+                width: 100px;
+                height: 100px;
                 float: left;
             }
             
             #grid {
                 float: left;
                 padding: 8px;
+            }
+            
+            #instructions {
+                margin-left: 8px;
+                float: left;
             }
         </style>
     </head>
@@ -39,13 +53,14 @@
         <script src="javascript/Game.js"></script>
         <script src="javascript/Block.js"></script>
         <script src="javascript/Shape.js"></script>
-        <script src="javascript/Ghost.js"></script>
         <script src="javascript/BlockMatrix.js"></script>
         <h1> Tetris </h1>
         <div id = "frame">
             <div id = "left_panel">
                 <h3>Hold</h3>
-                <div id = "hold"></div>               
+                <div id = "hold">
+                    <img id="held_piece"src="images/empty.png">
+                </div>               
                 <h5>Level:</h5>
                 <h5 id="level">0</h5><br> 
                 <h5>Score:</h5>
@@ -54,6 +69,23 @@
                 <h5 id="lines">0</h5>
             </div>
             <div id = "grid"></div>
+        </div>
+        <div id="instructions">
+            <h2> Controls </h2>
+            <p>
+                <b>Left/Right Arrow:</b> Move tetromino <br>
+                <b>Up Arrow:</b> Rotate right <br>  
+                <b>Z:</b> Rotate Left<br>
+                <b>Down Arrow:</b> Soft drop <br>
+                <b>SPACE</b> Hard drop <br>   
+                <b>C:</b> Hold <br>   
+            </p>
+            <h2> Scoring </h2>
+            <p>
+                <b>Line clear</b> Number of lines x 200 <br>
+                <b>Soft drop</b> Distance x 1 <br>  
+                <b>Hard drop</b> Distance x 2 
+            </p>
         </div>
     </body>
 </html>
