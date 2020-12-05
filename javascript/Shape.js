@@ -3,7 +3,6 @@ class Shape{
         this.shapeID = shapeID;
         this.blockMatrix = blockMatrix;
         this.dead = false;
-        this.gameOver = false;
         switch(this.shapeID){ //initialize blocks and pivot points for rotation
             case('i'):
                 this.color = 'cyan'
@@ -62,7 +61,6 @@ class Shape{
                 this.pivot = {x: 4, y: 1};
                 break;
         }
-        if(this.checkShapeOverlap(this)) this.gameOver = true;
     }
 
     moveDown(){ //move shape down if area under it is unoccupied

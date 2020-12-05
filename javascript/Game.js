@@ -103,7 +103,7 @@ function draw(){
     document.getElementById("score").innerHTML = score;
     document.getElementById("level").innerHTML = level;
     document.getElementById("lines").innerHTML = totalLines;
-    if(shape.gameOver) {
+    if(shape.checkShapeOverlap(shape)) { 
         stroke(0);
         fill(0);
         rect(0, 0, 200, 0 + y);
@@ -142,4 +142,3 @@ function keyPressed(){
         document.getElementById("held_piece").src = "images/" + heldPiece + ".png";
     }
 } //keybinds
-
