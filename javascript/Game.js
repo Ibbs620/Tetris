@@ -59,8 +59,9 @@ function draw(){
     } else {
         fallSpeed = 60 - (level - 1) * 3; 
     }
- 
 
+    level = Math.floor(totalLines / 10) + 1;
+    
     if(!shape.dead && currentFrame % fallSpeed == 0) { 
         shape.moveDown();
         if(keyIsDown(DOWN_ARROW))score += 1;
@@ -78,7 +79,7 @@ function draw(){
 
     currentLines = blockMatrix.clearLines();
     totalLines += currentLines;
-    score += currentLines * 200;
+    score += currentLines * 200 * level;
 
     if(keyIsDown(LEFT_ARROW) || keyIsDown(RIGHT_ARROW)){
         move++;
