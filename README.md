@@ -2,4 +2,4 @@
 Tetris recreated with JavaScript
 
 Play it here:
-ibbs620.github.io/Tetris
+https://ibbs620.github.io/Tetris/
